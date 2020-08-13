@@ -61,7 +61,7 @@ class App extends React.Component {
               </div>
               <input type="text" className="form-control text-capitalize" placeholder="add todo item" value={this.state.item} onChange={this.handleChange} />
             </div>
-            <button type="submit" className={this.state.editItem ? "btn btn-block btn-success mt-3 text-capitalize" : "btn btn-block btn-primary mt-3 text-capitalize"}>{this.state.editItem ? "edit item" : "add item"}</button>
+            <button disabled={this.state.item.length ? false : true} type="submit" className={this.state.editItem ? "btn btn-block btn-success mt-3 text-capitalize" : "btn btn-block btn-primary mt-3 text-capitalize"}>{this.state.editItem ? "edit item" : "add item"}</button>
           </form>
         </div>
         <ul className="list-group my-5">
@@ -74,6 +74,9 @@ class App extends React.Component {
                   <span className="btn p-0 mx-2 text-success">
                     <i className="fas fa-pen" onClick={() => this.handleEdit(item.id)}></i>
                   </span>
+                  <span className="btn p-0 mx-2 text-primary">
+                    <i className="fas fa-check" onClick={() => this.handleEdit(item.id)}></i>
+                  </span>
                   <span className="btn p-0 mx-2 text-danger">
                     <i className="fas fa-trash" onClick={() => this.handleDelete(item.id)}></i>
                   </span>
@@ -81,7 +84,7 @@ class App extends React.Component {
               </li>
             )
           })}
-          <button type="submit" className="btn btn-block btn-danger mt-5 text-capitalize" onClick={this.clearAll}>clear list</button>
+          <button disabled={this.state.items.length ? false : true} type="submit" className="btn btn-block btn-danger mt-5 text-capitalize" onClick={this.clearAll}>clear list</button>
         </ul>
       </div>
     );
